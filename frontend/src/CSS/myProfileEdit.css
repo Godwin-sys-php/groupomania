@@ -1,0 +1,33 @@
+.label-file {
+  cursor: pointer;
+  color: var(--danger);
+  font-weight: bold;
+  background-color: white;
+  padding: 0.75%;
+  border-radius: 25px;
+  border: solid 1px var(--danger);
+  transition: color 250ms, background-color 250ms;
+}
+.label-file:hover {
+  color: white;
+  background-color: var(--danger);
+}
+
+.label-file2 {
+  cursor: pointer;
+  color: var(--warning);
+  font-weight: bold;
+  background-color: white;
+  padding: 0.75%;
+  border-radius: 25px;
+  border: solid 1px var(--warning);
+  transition: color 250ms, background-color 250ms;
+}
+.label-file2:hover {
+  color: white;
+  background-color: var(--warning);
+}
+
+.input-file {
+  display: none;
+}
