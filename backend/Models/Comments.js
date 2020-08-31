@@ -1,11 +1,8 @@
-const mysql = require('mysql');
-const config = require('../config.json');
+const Base = require('./Base');
 
-class Comments {
+class Comments extends Base {
   constructor() {
-    this.bdd = mysql.createConnection(config);
-
-    this.bdd.connect();
+    super();
   }
 
   add(toAdd) {
@@ -20,10 +17,10 @@ class Comments {
     });
   }
 
-  get(filter) {
+  getAllComment(idArticle) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "SELECT * FROM comments WHERE ?", filter,
+        "SELECT * FROM comments INNER JOIN articles ON comments.idArticle= articles.idArticle WHERE articles.idArticle= ?", idArticle,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);
@@ -32,10 +29,10 @@ class Comments {
     });
   }
 
-  update(toSet, filter) {
+  getOneComment(idComment) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "UPDATE comments SET ? WHERE ?", [toSet, filter],
+        "SELECT * FROM comments WHERE idComment= ?", idComment,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);
@@ -44,10 +41,22 @@ class Comments {
     });
   }
 
-  delete(filter) {
+  update(toSet, idComment) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "DELETE FROM comments WHERE ?", filter,
+        "UPDATE comments SET ? WHERE idComment= ?", [toSet, idComment],
+        (error, results, fields) => {
+          if (error) reject(error);
+          resolve(results);
+        }
+      );
+    });
+  }
+
+  delete(idComment) {
+    return new Promise((resolve, reject) => {
+      this.bdd.query(
+        "DELETE FROM comments WHERE idComment= ?", idComment,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);

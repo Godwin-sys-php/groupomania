@@ -8,7 +8,7 @@ const path = require("path");
 const app = express();
 
 const usersRoute = require('./Routes/Users');
-//const articlesRoute = require("./Routes/Articles");
+const articlesRoute = require("./Routes/Articles");
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,7 +34,7 @@ app.use(
 
 
 app.use('/api', usersRoute);
-//app.use("/api/articles", articlesRoute);
+app.use("/api/articles", articlesRoute);
 
 
 module.exports = app;

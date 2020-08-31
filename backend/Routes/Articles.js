@@ -1,20 +1,27 @@
-// const express = require("express");
-// const router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-// const articleCtrl = require("../Controllers/Article");
+const articleCtrl = require("../Controllers/Article");
 
-// router.delete("/:id", articleCtrl.delete);
-// router.delete("/comments/:id", articleCtrl.deleteComment);
+const authArticle = require('../Middleware/authArticle');
+const authArticleSecondary = require('../Middleware/authArticleSecondary');
+const authUser = require('../Middleware/authUser');
+const authComment = require('../Middleware/authComment');
 
-// router.get("/", articleCtrl.getAll);
-// router.get("/:id", articleCtrl.get);
-// router.get("/:id/comments", articleCtrl.getAllComment);
-// router.get("/users/:id?nbr=:nbr", articleCtrl.getWithUser);
+const commentValidator = require('../Middleware/validatorComment');
+const articleValidator = require('../Middleware/validatorArticle');
 
-// router.post("/", articleCtrl.add);
-// router.post("/:id/comments", articleCtrl.addComment);
+router.delete("/:id", authUser, authArticle, articleCtrl.delete);
+router.delete("/comments/:id", authComment, articleCtrl.deleteComment);
 
-// router.put("/:id", articleCtrl.update);
-// router.put("/comments/:id", articleCtrl.updateComment);
+router.get("/", authUser, articleCtrl.getAll);
+router.get("/:id", authUser, articleCtrl.get);
+router.get("/:id/comments", authUser, articleCtrl.getAllComment);
 
-// module.exports = router;
+router.post("/", authUser, authArticleSecondary, articleValidator, articleCtrl.add);
+router.post("/:id/comments", authUser, authArticleSecondary, commentValidator, articleCtrl.addComment);
+
+router.put("/:id", authArticle, articleValidator, articleCtrl.update);
+router.put("/comments/:id", authUser, authComment, commentValidator, articleCtrl.updateComment);
+
+module.exports = router; 

@@ -1,11 +1,8 @@
-const mysql = require('mysql');
-const config = require('../config.json');
+const Base = require('./Base');
 
-class Articles {
+class Articles extends Base {
   constructor() {
-    this.bdd = mysql.createConnection(config);
-
-    this.bdd.connect();
+    super();
   }
 
   add(toAdd) {
@@ -20,10 +17,10 @@ class Articles {
     });
   }
 
-  get(filter) {
+  getAllArticle() {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "SELECT * FROM articles WHERE ?", filter,
+        "SELECT * FROM articles",
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);
@@ -32,10 +29,10 @@ class Articles {
     });
   }
 
-  update(toSet, filter) {
+  getOneArticle(id) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "UPDATE articles SET ? WHERE ?", [toSet, filter],
+        "SELECT * FROM articles WHERE idArticle= ?", id,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);
@@ -44,10 +41,22 @@ class Articles {
     });
   }
 
-  delete(filter) {
+  update(toSet, id) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "DELETE FROM articles WHERE ?", filter,
+        "UPDATE articles SET ? WHERE idArticle=?", [toSet, id],
+        (error, results, fields) => {
+          if (error) reject(error);
+          resolve(results);
+        }
+      );
+    });
+  }
+
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      this.bdd.query(
+        "DELETE articles, comments FROM articles LEFT JOIN comments ON comments.idArticle= articles.idArticle WHERE articles.idArticle= ?", id,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);

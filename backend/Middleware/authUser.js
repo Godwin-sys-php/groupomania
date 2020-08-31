@@ -5,17 +5,16 @@ const User = require('../Models/Users');
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
-    const idUser = req.params.id;
 
     const decodedToken = jwt.verify(token, config.token);
 
     if (decodedToken.idUser) {
-      User.getOneUser(idUser)
+      User.getOneUser(decodedToken.idUser)
         .then(result => {
-          console.log(result);
           if (!result[0]) {
             throw 'Utilisateur inexistant';
           } else {
+            req.idUser = decodedToken.idUser;
             next();
           }
         })
