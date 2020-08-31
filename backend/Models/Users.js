@@ -97,7 +97,7 @@ class Users extends Base {
   delete(id) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "DELETE u, a FROM users u LEFT JOIN articles a ON a.idUser=u.idUser WHERE u.idUser=?", [id],
+        "DELETE u, a, c FROM users u LEFT JOIN articles a ON a.idUser=u.idUser LEFT JOIN comments c ON c.idArticle= a.idArticle WHERE u.idUser=?", [id],
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);
