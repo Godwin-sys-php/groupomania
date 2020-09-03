@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
         if (result.length < 1) {
           res.status(400).json({ notFoundComment: true });
         } else {
-          User.getOneUser(result[0].idUser)
+          User.getOneUser(decodedToken.idUser)
             .then(data => {
               if (data[0].isAdmin == 1) {
                 next();
