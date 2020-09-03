@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '../logo/icon-above-font.png';
 
 export default function Bye() {
-  document.title = "Désolé - Groupomania";
+  document.title = "Aurevoir - Groupomania";
   return (
     <div className="container">
       <div className="text-center">

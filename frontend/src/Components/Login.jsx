@@ -20,7 +20,7 @@ class Login extends React.Component {
     this.messageType = "";
     document.title = "Connexion - Groupomania";
     if (localStorage.getItem('tokenGroupomania') !== null || localStorage.getItem('idUserGroupomania') !== null) {
-      window.location.href = "/application/home";
+      window.location.href = "/application/allArticle";
     }
   }
 
@@ -44,7 +44,7 @@ class Login extends React.Component {
         if (response.identifiant === true && response.password === true) {
           localStorage.setItem('tokenGroupomania', response.token);
           localStorage.setItem('idUserGroupomania', response.idUser);
-          window.location.href = "/application/home";
+          window.location.href = "/application/allArticle";
         } else if (response.identifiant === true && response.password === false) {
           this.messageType = "danger";
           this.setState({ message: "Votre mot de passe est incorrect" });

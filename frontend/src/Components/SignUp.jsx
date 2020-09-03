@@ -25,7 +25,7 @@ class SignUp extends React.Component {
       messageType: ""
     };
     if (localStorage.getItem('tokenGroupomania') !== null || localStorage.getItem('idUserGroupomania') !== null) {
-      window.location.href = "/application/home";
+      window.location.href = "/application/allArticle";
     }
   }
 
@@ -75,7 +75,7 @@ class SignUp extends React.Component {
               if (response.identifiant === true && response.password === true) {
                 localStorage.setItem('tokenGroupomania', response.token);
                 localStorage.setItem('idUserGroupomania', response.idUser);
-                window.location.href = "/application/home";
+                window.location.href = "/application/allArticle";
               } else {
                 this.setState({ message: "Une erreur inconnu a eu lieu réssayer un peu plus tard", messageType: "danger" });
               }

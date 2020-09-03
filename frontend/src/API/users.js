@@ -1,4 +1,7 @@
-const axios = require('axios');
+import axios from "axios";
+import { url } from './helper';
+
+console.log(url);
 
 export function signUpUser(toSend) {
   let init = {
@@ -8,8 +11,8 @@ export function signUpUser(toSend) {
       "Content-type": "application/json; charset=UTF-8"
     },
   };
-
-  return fetch('http://localhost:4200/api/auth/signup', init)
+  
+  return fetch(`${url}/api/auth/signup`, init)
     .then(response => response.json());
 }
 
@@ -22,7 +25,7 @@ export function loginUser(toSend) {
     },
   };
 
-  return fetch('http://localhost:4200/api/auth/login', init)
+  return fetch(`${url}/api/auth/login`, init)
     .then(response => response.json());
 }
 
@@ -35,7 +38,7 @@ export function getOneUser(idUser, token) {
     })
   };
 
-  return fetch(`http://localhost:4200/api/users/${idUser}`, init)
+  return fetch(`${url}/api/users/${idUser}`, init)
     .then(response => response.json());
 }
 
@@ -48,7 +51,7 @@ export function getPostsOfOneUser(idUser, token) {
     })
   };
 
-  return fetch(`http://localhost:4200/api/users/${idUser}/articles`, init)
+  return fetch(`${url}/api/users/${idUser}/articles`, init)
     .then(response => response.json());
 }
 
@@ -61,7 +64,7 @@ export function updateOneUser(idUser, token, toSend) {
     })
   };
 
-  return fetch(`http://localhost:4200/api/users/${idUser}`, init)
+  return fetch(`${url}/api/users/${idUser}`, init)
     .then(response => response.json());
 }
 
@@ -75,7 +78,7 @@ export function updateOneUser2(idUser, token, toSend) {
     })
   };
 
-  return fetch(`http://localhost:4200/api/users/${idUser}`, init)
+  return fetch(`${url}/api/users/${idUser}`, init)
     .then(response => response.json());
 }
 
@@ -85,7 +88,7 @@ export function deleteOneUser(idUser, token) {
   };
   
   return axios.delete(
-    `http://localhost:4200/api/users/${idUser}`,
+    `${url}/api/users/${idUser}`,
     config
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavBar } from '../SubComponents/NavBar';
+import Deconnect from '../SubComponents/Deconnect';
 
 function NotFound() {
   document.title = "404 Not Found - Groupomania";
@@ -8,10 +9,10 @@ function NotFound() {
     a = (<NavBar>
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link" href="signup">Inscription</a>
+          <a className="nav-link" href="/signup">Inscription</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="login">Connexion</a>
+          <a className="nav-link" href="/login">Connexion</a>
         </li>
       </ul>
     </NavBar>
@@ -19,23 +20,21 @@ function NotFound() {
   } else {
     a = (<NavBar>
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link" href="application/home">Derniers articles</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="application/allArticle">Tout les articles</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="application/search">Rechercher</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="application/myProfile">Mon profil</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="application/deconnect">Déconnexion</a>
-        </li>
+          
+          <li className="nav-item">
+              <a className="nav-link" href="/application/allArticle">Tout les articles</a>
+          </li>
+          <li className="nav-item">
+              <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
+          </li>
+          <li className="nav-item">
+              <a className="nav-link" href="/application/myProfile">Mon profil</a>
+          </li>
+          <li className="nav-item">
+              <Deconnect />
+          </li>
       </ul>
-      </NavBar>
+  </NavBar>
     );
   }
   return (

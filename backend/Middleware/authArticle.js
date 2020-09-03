@@ -1,6 +1,7 @@
 const config = require('../config.json'); 
 const jwt = require('jsonwebtoken');
 const Articles = require('../Models/Articles');
+const Users = require('../Models/Users');
 
 module.exports = (req, res, next) => {
   try {
@@ -18,7 +19,15 @@ module.exports = (req, res, next) => {
             req.idUser = decodedToken.idUser;
             next();
           } else {
-            throw 'idUser invalid';
+            Users.getOneUser(decodedToken.idUser)
+              .then(data => {
+                if (data[0].isAdmin == 1) {
+                  next();
+                } else {
+                  throw 'idUser invalid';
+                }
+              })
+              .catch(error => res.status(500).json({ error: true }));
           }
         }
       })

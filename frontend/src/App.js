@@ -5,15 +5,17 @@ import NotFound from './Components/NotFound.jsx';
 import SignUp from './Components/SignUp.jsx';
 import Login from './Components/Login';
 
-import Home from './Components/Home';
 import AllArticle from './Components/AllArticle';
-import Search from './Components/Search';
+import NewArticle from './Components/NewArticle';
 import MyProfile from './Components/MyProfile';
 import MyProfileEdit from './Components/MyProfileEdit';
 import MyProfileEditPassword from './Components/MyProfileEditPassword';
 import DeleteProfile from './Components/DeleteProfile';
-import Deconnect from './Components/Deconnect';
 
+import ViewArticle from './Components/ViewArticle';
+import EditArticle from './Components/EditArticle';
+import EditComment from './Components/EditComment';
+import Profile from './Components/Profile';
 
 import Sorry from './Components/Sorry';
 import Bye from './Components/Bye';
@@ -31,15 +33,17 @@ function App() {
         <Route exact path='/' component={SignUp} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/login' component={Login} />
-        <Route exact path='/application/home' component={Home} />
         <Route exact path='/application/allArticle' component={AllArticle} />
-        <Route exact path='/application/search' component={Search} />
+        <Route exact path='/application/newArticle' component={NewArticle} />
         <Route exact path='/application/myProfile' component={MyProfile} />
         <Route exact path='/application/myProfile/edit' component={MyProfileEdit} />
         <Route exact path='/application/myProfile/editPassword' component={MyProfileEditPassword} />
         <Route exact path='/application/myProfile/deleteIt' component={DeleteProfile} />
-        <Route exact path='/application/deconnect' component={Deconnect} />
 
+        <Route exact path='/application/article/:idArticle' component={ViewArticle} />
+        <Route path='/application/article/:idArticle/edit' component={EditArticle} />
+        <Route path='/application/comment/:idComment/edit' component={EditComment} />
+        <Route path='/application/profile/:idUser' component={Profile} />
 
         <Route exact path='/sorry' component={Sorry} />
         <Route exact path='/bye' component={Bye} />

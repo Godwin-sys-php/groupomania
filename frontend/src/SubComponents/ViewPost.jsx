@@ -27,7 +27,7 @@ class ViewPost extends React.Component {
     let arrayElement = [];
     for (let index in this.state.posts) {
       arrayElement.push(
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href={`/application/article/${this.state.posts[index].idArticle}`} class="list-group-item list-group-item-action">
           <div class="d-flex w-100 justify-content-between">
             <h3 class="mb-1">{this.state.posts[index].title}</h3>
           </div>
@@ -46,10 +46,14 @@ class ViewPost extends React.Component {
 
   _displayAll = () => {
     return !this.state.error ? (
-      <div class="list-group" role="complimentary">
-        {this._displaySpinner()}
-        {this._displayPosts()}
-      </div> 
+      <React.Fragment>
+        <div class="list-group" role="complimentary">
+          {this._displaySpinner()}
+          {this._displayPosts()}
+        </div> 
+        <br />
+        <br />
+      </React.Fragment>
     ) : (
         <div className="alert alert-danger">
           Une erreur a eu lieu. Réssayer plus tard

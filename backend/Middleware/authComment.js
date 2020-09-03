@@ -15,19 +15,19 @@ module.exports = (req, res, next) => {
         if (result.length < 1) {
           res.status(400).json({ notFoundComment: true });
         } else {
-          if (decodedToken.idUser === result[0].idUser) {
-            User.getOneUser(decodedToken.idUser)
-              .then((result) => {
-                if (result.length < 1) {
-                  throw "idUser invalid";
+          User.getOneUser(result[0].idUser)
+            .then(data => {
+              if (data[0].isAdmin == 1) {
+                next();
+              } else {
+                if (decodedToken.idUser === result[0].idUser) {
+                  next()
                 } else {
-                  next();
+                  throw "idUser invalid";
                 }
-              })
-              .catch((error) => res.status(500).json({ error: error }));
-          } else {
-            throw "idUser invalid";
-          }
+              }
+            })
+            .catch((error) => res.status(500).json({ error: error }));
         }
       })
       .catch((error) => {

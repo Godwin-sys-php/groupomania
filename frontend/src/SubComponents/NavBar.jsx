@@ -64,40 +64,16 @@ export function PrincipalNavBar() {
                     </ul> 
                 </NavBar>
             );
-        case '/application/home':
-            return (
-                <NavBar>
-                    <ul className="navbar-nav">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/allArticle">Tout les articles</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/myProfile">Mon profil</a>
-                        </li>
-                        <li className="nav-item">
-                            <Deconnect />
-                        </li>
-                    </ul>
-                </NavBar>
-            );
         case '/application/allArticle':
             return (
                 <NavBar>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
+                        
                         <li className="nav-item active">
                             <a className="nav-link" href="/application/allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
+                            <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/application/myProfile">Mon profil</a>
@@ -108,18 +84,16 @@ export function PrincipalNavBar() {
                     </ul>
                 </NavBar>
             );
-        case '/application/search':
+        case '/application/newArticle':
             return (
                 <NavBar>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link" href="/application/allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item active">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
+                            <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/application/myProfile">Mon profil</a>
@@ -135,14 +109,12 @@ export function PrincipalNavBar() {
             return (
                 <NavBar>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link" href="/application/allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
+                            <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="/application/myProfile">Mon profil</a>
@@ -158,14 +130,12 @@ export function PrincipalNavBar() {
             return (
                 <NavBar>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link" href="/application/allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
+                            <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="/application/myProfile">Mon profil</a>
@@ -181,14 +151,12 @@ export function PrincipalNavBar() {
             return (
                 <NavBar>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link" href="/application/allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
+                            <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="/application/myProfile">Mon profil</a>
@@ -204,14 +172,12 @@ export function PrincipalNavBar() {
             return (
                 <NavBar>
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/application/home">Derniers articles</a>
-                        </li>
+                        
                         <li className="nav-item">
                             <a className="nav-link" href="/application/allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/application/search">Rechercher</a>
+                            <a className="nav-link" href="/application/newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="/application/myProfile">Mon profil</a>
@@ -234,7 +200,7 @@ export function PrincipalNavBar() {
                             <a className="nav-link" href="allArticle">Tout les articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="search">Rechercher</a>
+                            <a className="nav-link" href="newArticle">Ajouter un article</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="myProfile">Mon profil</a>

@@ -1,4 +1,4 @@
-const protectToXss = require('xss');
+const protectToXss = require('sanitize-html');
 const moment = require('moment');
 const Articles = require('../Models/Articles');
 const Comments = require('../Models/Comments');
@@ -7,7 +7,16 @@ exports.add = (req, res) => {
   const toSet = {
     title: protectToXss(req.body.title),
     subtitle: protectToXss(req.body.subtitle),
-    content: protectToXss(req.body.content),
+    content: protectToXss(req.body.content, {
+      allowedTags: protectToXss.defaults.allowedTags.concat(['img', 'h1', 'h2', 'u', 'i', 'b']),
+      allowedAttributes: {
+        img: ['src', 'width', 'height', 'alt', 'title', 'aria-label'],
+        pre: ['style', 'class', 'aria-label'],
+        code: ['style', 'class', 'aria-label'],
+        span: ['style', 'class', 'aria-label'],
+        div: ['style', 'class', 'aria-label']
+      }
+    }),
     time: moment.now(),
     idUser: protectToXss(req.body.idUser)
   };
@@ -25,7 +34,16 @@ exports.addComment = (req, res) => {
   const toSet = {
     idArticle: protectToXss(req.params.id),
     idUser: protectToXss(req.body.idUser),
-    content: protectToXss(req.body.content),
+    content: protectToXss(req.body.content, {
+      allowedTags: protectToXss.defaults.allowedTags.concat(['img', 'h1', 'h2', 'u', 'i', 'b']),
+      allowedAttributes: {
+        img: ['src', 'width', 'height', 'alt', 'title', 'aria-label'],
+        pre: ['style', 'class', 'aria-label'],
+        code: ['style', 'class', 'aria-label'],
+        span: ['style', 'class', 'aria-label'],
+        div: ['style', 'class', 'aria-label']
+      }
+    }),
     time: moment.now()
   };
 
@@ -91,6 +109,20 @@ exports.getAllComment = (req, res) => {
     });
 };
 
+exports.getOneComment = (req, res) => {
+  Comments.getOneComment(req.params.id)
+    .then((results) => {
+      if (results.length > 0) {
+        res.status(200).json({ get: true, results: results });
+      } else {
+        res.status(201).json({ get: true, empty: true });
+      }
+    })
+    .catch(() => {
+      res.status(500).json({ error: true });
+    });
+};
+
 exports.update = (req, res) => {
   const toSet = req.body;
   delete toSet.idArticle;
@@ -98,7 +130,16 @@ exports.update = (req, res) => {
   delete toSet.time;
 
   for (let index in toSet) {
-    toSet[index] = protectToXss(toSet[index]);
+    toSet[index] = protectToXss(toSet[index], {
+      allowedTags: protectToXss.defaults.allowedTags.concat(['img', 'h1', 'h2', 'u', 'i', 'b']),
+      allowedAttributes: {
+        img: ['src', 'width', 'height', 'alt', 'title', 'aria-label'],
+        pre: ['style', 'class', 'aria-label'],
+        code: ['style', 'class', 'aria-label'],
+        span: ['style', 'class', 'aria-label'],
+        div: ['style', 'class', 'aria-label']
+      }
+    });
   }
 
   Articles.update(toSet, req.params.id)
@@ -119,7 +160,16 @@ exports.updateComment = (req, res) => {
   delete toSet.time;
 
   for (let index in toSet) {
-    toSet[index] = protectToXss(toSet[index]);
+    toSet[index] = protectToXss(toSet[index], {
+      allowedTags: protectToXss.defaults.allowedTags.concat(['img', 'h1', 'h2', 'u', 'i', 'b']),
+      allowedAttributes: {
+        img: ['src', 'width', 'height', 'alt', 'title', 'aria-label'],
+        pre: ['style', 'class', 'aria-label'],
+        code: ['style', 'class', 'aria-label'],
+        span: ['style', 'class', 'aria-label'],
+        div: ['style', 'class', 'aria-label']
+      }
+    });
   }
 
   Comments.update(toSet, req.params.id)
@@ -134,7 +184,7 @@ exports.updateComment = (req, res) => {
 exports.delete = (req, res) => {
   Articles.delete(req.params.id)
     .then((result) => {
-      res.status(201).json({ update: true, ...result });
+      res.status(201).json({ delete: true, ...result });
     })
     .catch((error) => {
       console.log(error);
@@ -145,7 +195,7 @@ exports.delete = (req, res) => {
 exports.deleteComment = (req, res) => {
   Comments.delete(req.params.id)
     .then((result) => {
-      res.status(201).json({ update: true, ...result });
+      res.status(201).json({ delete: true, ...result });
     })
     .catch(() => {
       res.status(500).json({ error: true });

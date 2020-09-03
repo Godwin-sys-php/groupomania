@@ -17,6 +17,7 @@ router.delete("/comments/:id", authComment, articleCtrl.deleteComment);
 router.get("/", authUser, articleCtrl.getAll);
 router.get("/:id", authUser, articleCtrl.get);
 router.get("/:id/comments", authUser, articleCtrl.getAllComment);
+router.get("/comments/:id", authUser, articleCtrl.getOneComment);
 
 router.post("/", authUser, authArticleSecondary, articleValidator, articleCtrl.add);
 router.post("/:id/comments", authUser, authArticleSecondary, commentValidator, articleCtrl.addComment);

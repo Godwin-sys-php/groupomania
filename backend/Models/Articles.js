@@ -20,7 +20,7 @@ class Articles extends Base {
   getAllArticle() {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "SELECT * FROM articles",
+        "SELECT * FROM articles ORDER BY idArticle DESC",
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);

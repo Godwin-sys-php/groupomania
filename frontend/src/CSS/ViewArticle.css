@@ -1,0 +1,8 @@
+.Link {
+  color: var(--primary);
+}
+.Link:hover {
+  cursor: pointer;
+  color: var(--primary);
+  text-decoration: underline;
+}

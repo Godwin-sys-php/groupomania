@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const protectToXss = require('xss');
+const protectToXss = require('sanitize-html');
 const config = require('../config.json');
 
 const fs = require('fs');

@@ -20,7 +20,7 @@ class Comments extends Base {
   getAllComment(idArticle) {
     return new Promise((resolve, reject) => {
       this.bdd.query(
-        "SELECT * FROM comments INNER JOIN articles ON comments.idArticle= articles.idArticle WHERE articles.idArticle= ?", idArticle,
+        "SELECT comments.* FROM comments LEFT JOIN articles ON comments.idArticle= articles.idArticle WHERE articles.idArticle= ?", idArticle,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(results);
