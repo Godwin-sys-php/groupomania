@@ -120,7 +120,7 @@ class MyProfileEditPassword extends React.Component {
             <div className="form-group">
               <label htmlFor="newPassword">Votre mot de passe:</label>
               <div class="input-group mb-3">
-                <input id="newPassword" className="form-control" type={this._displayType()} placeholder="Entrez votre nouveau mot de passe..." aria-label="Votre nouveau mot de passe"  required onChange={(event) => { this.newPassword = event.target.value; }} id="newPassword" aria-describedby="btnSubmit" autoComplete="off" />
+                <input id="newPassword" className="form-control" type={this._displayType()} placeholder="Entrez votre nouveau mot de passe..." aria-label="Votre nouveau mot de passe"  required onChange={(event) => { this.newPassword = event.target.value; }} aria-describedby="btnSubmit" autoComplete="off" />
                 <div class="input-group-append">
                   <button class="btn btn-secondary" aria-hidden="true" aria-label="Afficher ou masquer le mot de passe" onClick={this._handleView} type="button">{this._displayEye()}</button>
                 </div>

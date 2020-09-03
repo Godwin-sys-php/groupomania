@@ -186,7 +186,7 @@ class ViewArticle extends React.Component {
         let arrayElement = [];
         for (let index in this.state.articleComment) {
           const a = moment(parseInt(this.state.articleComment[index].time));
-          if (this.state.articleComment[index].idUser == localStorage.getItem('idUserGroupomania')) {
+          if (this.state.articleComment[index].idUser == localStorage.getItem('idUserGroupomania') || this.state.isAdmin) {
             arrayElement.push(
               <React.Fragment>
                 <div className="card" key={this.state.articleComment[index].idComment}>

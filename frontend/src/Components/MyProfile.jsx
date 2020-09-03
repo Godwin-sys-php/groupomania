@@ -18,9 +18,9 @@ class MyProfile extends React.Component {
         <PrincipalNavBar />
         <div className="container" role="main">
           <ViewProfile idUser={localStorage.getItem('idUserGroupomania')} />
-          <a href="/application/myProfile/edit"><button role="button" className="btn btn-primary">Modifier</button></a>&nbsp;
-          <a href="/application/myProfile/editPassword"><button role="button" className="btn btn-warning">Modifier mon mot de passe</button></a>&nbsp;
-          <a href="/application/myProfile/deleteIt"><button role="button" className="btn btn-danger">Supprimer mon compte</button></a>&nbsp;
+          <a href="/application/myProfile/edit"><button className="btn btn-primary">Modifier</button></a>&nbsp;
+          <a href="/application/myProfile/editPassword"><button className="btn btn-warning">Modifier mon mot de passe</button></a>&nbsp;
+          <a href="/application/myProfile/deleteIt"><button className="btn btn-danger">Supprimer mon compte</button></a>&nbsp;
           <br /><br />
           <h2>Mes articles: </h2>
           <ViewPosts idUser={localStorage.getItem('idUserGroupomania')} />
