@@ -4,7 +4,7 @@ import Image from '../logo/icon-above-font.png';
 import { getOneUser, loginUser, updateOneUser2 } from '../API/users';
 import passwordValidator from 'password-validator';
 
-import '@fortawesome/fontawesome-free/css/all.min.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 class MyProfileEditPassword extends React.Component {
   constructor(props) {

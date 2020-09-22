@@ -1,7 +1,4 @@
-import axios from "axios";
 import { url } from './helper';
-
-console.log(url);
 
 export function signUpUser(toSend) {
   let init = {
@@ -83,12 +80,16 @@ export function updateOneUser2(idUser, token, toSend) {
 }
 
 export function deleteOneUser(idUser, token) {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
+  let init = {
+    method: 'DELETE',
+    headers: new Headers({
+      'Authorization': 'Bearer ' + token
+    })
   };
   
-  return axios.delete(
+  return fetch(
     `${url}/api/users/${idUser}`,
-    config
-  );
+    init
+  )
+    .then(response => response.json());
 }

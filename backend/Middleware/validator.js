@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
       .has().digits(2);
     
     
-    if (validator.isEmail(req.body.email) && schema.validate(req.body.password) && req.body.pseudo.length > 4 && req.body.name.length > 4) {
+    if (validator.isEmail(req.body.email) && schema.validate(req.body.password) && req.body.pseudo.length >= 4 && req.body.name.length > 4) {
       User.login(req.body.email)
         .then(results => {
           if (results.length > 0) {

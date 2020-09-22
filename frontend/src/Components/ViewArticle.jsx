@@ -264,7 +264,7 @@ class ViewArticle extends React.Component {
     }
     addComment(this.idArticle, toSend, localStorage.getItem('tokenGroupomania'))
       .then(result => {
-        console.log(result);
+        window.location.reload();
       })
   }
 
